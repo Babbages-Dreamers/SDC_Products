@@ -1,0 +1,25 @@
+{
+  "name": "sdc_products",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Babbages-Dreamers/SDC_Products.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Babbages-Dreamers/SDC_Products/issues"
+  },
+  "homepage": "https://github.com/Babbages-Dreamers/SDC_Products#readme",
+  "dependencies": {
+    "sequelize": "^6.32.1"
+  }
+}
