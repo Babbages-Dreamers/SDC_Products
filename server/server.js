@@ -1,5 +1,6 @@
-const express = require('express')
 const { getAllProducts, getProductInfo } = require('../models/products.js')
+const { getStyles } = require('../models/styles.js')
+const express = require('express')
 
 const app = express();
 
@@ -20,7 +21,8 @@ app.get('/products', async (req, res) => {
 
 app.get('/products/:product_id', async (req, res) => {
   try {
-    const productInfo = await getProductInfo(req.params.product_id)
+    const product_id = req.params.product_id;
+    const productInfo = await getProductInfo(product_id)
     console.log(productInfo)
     res.send(productInfo)
   } catch (error) {
@@ -29,8 +31,16 @@ app.get('/products/:product_id', async (req, res) => {
   }
 })
 
-app.get('/products/:product_id/styles', (req, res) => {
-
+app.get('/products/:product_id/styles', async (req, res) => {
+  try {
+    const product_id = req.params.product_id;
+    const styles = await getStyles(product_id);
+    console.log('these are ther styles: ', styles)
+    res.send(styles);
+  } catch (error) {
+    console.log('error');
+    res.send(error);
+  }
 })
 
 app.get('/products/:product_id/related', (req, res) => {

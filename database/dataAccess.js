@@ -5,7 +5,8 @@ const connection = {
   port: 5432,
   database: 'sdc_products',
   user: 'postgres',
-  password: ''
+  password: '',
+  allowExitOnIdle: true
 };
 
 const db = pgp(connection);
