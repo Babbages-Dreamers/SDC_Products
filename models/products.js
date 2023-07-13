@@ -14,7 +14,6 @@ const getProductInfo = (product_id) => {
     return product_data;
   })
   .catch((err) =>  err)
-
 }
 
 module.exports = {
