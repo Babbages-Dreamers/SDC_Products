@@ -1,10 +1,10 @@
-const { db } = require('../database/dataAccess.js')
+const { db } = require('../../database/dataAccess.js')
 
 const getAllProducts = (page = 1, count = 5) => {
   return db.query('SELECT * FROM products OFFSET $1 LIMIT $2', [(page * count), count])
 }
 
-const getProductInfo = (product_id) => {
+const getProduct = (product_id) => {
   const product_table = db.query('SELECT * FROM products WHERE product_id = $1', [product_id])
   const features_table = db.query('SELECT feature, value FROM features WHERE product_id = $1', [product_id])
 
@@ -17,6 +17,6 @@ const getProductInfo = (product_id) => {
 }
 
 module.exports = {
-  getProductInfo,
+  getProduct,
   getAllProducts
 }
