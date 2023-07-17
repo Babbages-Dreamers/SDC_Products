@@ -21,6 +21,16 @@ app.get("/api/products/:product_id/styles", retrieveStyles);
 
 app.get("/api/products/:product_id/related", retrieveRelated);
 
-app.listen(PORT, () => {
-  console.log(`Server is listening on port ${PORT}`);
-});
+const startServer = (port) => {
+  const server = app.listen(port, () => {
+    console.log(`Server is listening on port ${PORT}`);
+  });
+  return server;
+}
+
+startServer(PORT);
+
+module.exports = {
+  app: app,
+  startServer
+}
