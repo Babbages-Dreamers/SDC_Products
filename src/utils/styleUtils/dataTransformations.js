@@ -1,3 +1,15 @@
+const { db } = require("../../database/dataAccess")
+
+const getProductDetails = async (product_id) => {
+  return db.query(
+    `SELECT styles.*, photos.*, skus.*, products.name
+    FROM products
+    JOIN styles ON styles.product_id = products.id
+    JOIN photos ON photos.style_id = styles.style_id
+    JOIN skus ON skus.style_id = styles.style_id
+    WHERE products.id = $1`,[product_id])
+}
+
 const generateNumber = () => {
   let currentNum = 37;
   return () => {
@@ -45,5 +57,6 @@ const handleNewItem = (item, newSku) => ({
 module.exports = {
   handleFoundItem,
   handleNewItem,
-  generateNumber
+  generateNumber,
+  getProductDetails
 }
