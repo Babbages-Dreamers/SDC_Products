@@ -1,4 +1,4 @@
-require('dotenv').config()
+
 const {
   retrieveAllProducts,
   retrieveProduct,
@@ -7,8 +7,6 @@ const {
 } = require("./controllers");
 
 const express = require("express");
-
-const PORT = process.env.PORT || 3000;
 
 const app = express();
 
@@ -23,14 +21,20 @@ app.get("/api/products/:product_id/styles", retrieveStyles);
 app.get("/api/products/:product_id/related", retrieveRelated);
 
 const startServer = (port) => {
-  if (process.env.NODE_ENV !== 'test') {
-    app.listen(port, () => {
-      console.log(`Server is listening on port ${PORT}`);
+  let server;
+  if (process.env.NODE_ENV === 'test') {
+    server = app.listen(3001, () => {
+      console.log(`Server is listening on port ${3001}`);
+    })
+  } else {
+    server = app.listen(port, () => {
+      console.log(`Server is listening on port ${port}`);
     });
   }
+  return server;
 }
 
-startServer();
+
 
 module.exports = {
   app: app,
