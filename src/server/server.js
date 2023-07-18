@@ -1,3 +1,4 @@
+require('dotenv').config()
 const {
   retrieveAllProducts,
   retrieveProduct,
@@ -22,13 +23,14 @@ app.get("/api/products/:product_id/styles", retrieveStyles);
 app.get("/api/products/:product_id/related", retrieveRelated);
 
 const startServer = (port) => {
-  const server = app.listen(port, () => {
-    console.log(`Server is listening on port ${PORT}`);
-  });
-  return server;
+  if (process.env.NODE_ENV !== 'test') {
+    app.listen(port, () => {
+      console.log(`Server is listening on port ${PORT}`);
+    });
+  }
 }
 
-startServer(PORT);
+startServer();
 
 module.exports = {
   app: app,
