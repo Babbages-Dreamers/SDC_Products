@@ -54,9 +54,38 @@ const handleNewItem = (item, newSku) => ({
   },
 });
 
+const formatStylesData = (styles) => {
+  if (styles.length < 1) {
+    return [];
+  }
+  let photoIds = new Set();
+  let skuIds = new Set();
+  let newSku = generateNumber();
+
+  return styles.reduce(
+    (accumulator, item) => {
+      let foundItem = accumulator[0].results.find(
+        (style) => style.style_id === item.style_id
+      );
+      if (foundItem) {
+        handleFoundItem(foundItem, item, photoIds, skuIds, newSku);
+      } else {
+        let newStyle = handleNewItem(item, newSku);
+        accumulator[0].results.push(newStyle);
+        photoIds.add(item.photo_id);
+        skuIds.add(item.id);
+      }
+      return accumulator;
+    },
+    [{ product_id: styles[0].product_id, results: [] }]
+  );
+}
+
+
 module.exports = {
   handleFoundItem,
   handleNewItem,
   generateNumber,
-  getProductDetails
+  getProductDetails,
+  formatStylesData
 }
