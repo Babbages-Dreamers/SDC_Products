@@ -9,7 +9,7 @@
   "scripts": {
     "start": "nodemon src/server/startServer.js",
     "test": "jest --verbose --detectOpenHandles",
-    "stress-test": "artillery run /tests/products-stress.yml"
+    "stress-test": "artillery run tests/stressTests/products-stress.yml -o tests/stressTests/reports"
   },
   "repository": {
     "type": "git",

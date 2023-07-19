@@ -8,6 +8,8 @@ const connection = {
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   ssl: { sslmode: 'require', rejectUnauthorized: false },
+  max: 15,
+  idleTimeoutMillis: 3000,
   allowExitOnIdle: true
 };
 

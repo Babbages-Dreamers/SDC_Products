@@ -1,4 +1,5 @@
 const { getAllProducts, getProduct } = require("../models")
+const { handleGetProduct } = require("../../utils/productUtils/dataTransformations")
 
 const retrieveAllProducts = async (req, res) => {
   try {
@@ -15,7 +16,8 @@ const retrieveProduct = async (req, res) => {
   try {
     const product_id = req.params.product_id;
     const productInfo = await getProduct(product_id);
-    res.send(productInfo);
+    productData = handleGetProduct(productInfo);
+    res.send(productData);
   } catch (error) {
     res.status(500).send(error.message);
   }
