@@ -13,13 +13,13 @@ config:
       duration: 300
       rampTo: 50
 scenarios:
-  - name: Product1
+  - name: Product999
     flow:
       - get:
           url: "/products"
       - get:
-          url: "/products/1"
+          url: "/products/999"
       - get:
-          url: "/products/1/styles"
+          url: "/products/999/styles"
       - get:
-          url: "/products/1/related"
+          url: "/products/999/related"
